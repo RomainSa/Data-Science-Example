@@ -1,5 +1,5 @@
 =============================================================================
-1. Python / Haskell / Perl / Your prefered scripting language.<br>
+###### 1. Python / Haskell / Perl / Your prefered scripting language.<br>
 a) array = [['a','b','c'],['d','e','f']]<br>
 How do I get this output?<br>
 a<br>
@@ -8,13 +8,13 @@ c<br>
 d<br>
 e<br>
 f<br>
-
+<br>
 b) Have a look at "programming-tasks/top10_sample.csv"<br>
 Each line in this file represents a list of Brand in our store.<br>
 Write a script to print out a list of brand names and their occurrence counts (sorted).<br>
 
 =============================================================================
-2. SQL<br>
+###### 2. SQL<br>
 a) What is the relation between Database, Schema, Tables, View in PostgreSQL / MySQL?<br>
 b) What is the difference between a table and a view?<br>
 c) Table reporting.items has 4 columns: Item_Code - Date - Visits - Orders<br>
@@ -23,16 +23,15 @@ Write a query to get total number of visit over all Item_Codes for every year?.<
 d) As a DBA: in PostgreSQL DB, write query(s) needed to give account "buying" access to all tables currently in schema "sales", and all future Tables created in schema "sales".<br>
 
 =============================================================================
-3. Bash scripting<br>
+###### 3. Bash scripting<br>
 a) Write a bash script for the below set of tasks:<br>
-[<br>
+[
 - connect to ftp server (host=10.11.12.13 port=22 username=helloFTP password=world)<br>
 - download all files that have their name started with "webtrekk_marketing" into "home/Marketing Report/Data/"<br>
 - run ZMR.py which is located in "home/Marketing Report/Scripts/"<br>
 - run UpdateWebtrekk.sql which is located in "home/Marketing Report/Scripts/" on a PostgreSQL DB (host=10.11.12.13 port=5439 database=zalora username=helloDB password=world)<br>
 ]<br>
 How would you schedule the above as a cron job every day at 2.35am?<br>
-
 b) Have a look at the folder "/programming-tasks/bash/"<br>
 - Write a bash script to rename all files below from "zalora-*" to "Zalora-*"<br>
 - All Zalora-* files contain a single string: "this is a test." (with a new line at the end):<br>
