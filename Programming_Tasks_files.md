@@ -45,15 +45,15 @@ A view is a virtual table and is the result of a given SELECT query.
 c) Table reporting.items has 4 columns: Item_Code - Date - Visits - Orders<br>
 Write a query to get total number of Visit over all Item_Codes for the day '2013-01-12'.<br>
 ```sql
-SELECT Item_codes, Visits
+SELECT SUM(Visits)
 FROM reporting.items
 WHERE Date = '2013-01-12';
 ```
 Write a query to get total number of visit over all Item_Codes for every year?.<br>
 ```sql
-SELECT Item_codes, YEAR(Date), SUM(Visits)
+SELECT YEAR(Date), SUM(Visits)
 FROM reporting.items
-GROUP BY Item_codes, YEAR(Date);
+GROUP BY YEAR(Date);
 ```
 <br>
 d) As a DBA: in PostgreSQL DB, write query(s) needed to give account "buying" access to all tables currently in schema "sales", and all future Tables created in schema "sales".<br>
@@ -89,11 +89,15 @@ quit
 # run ZMR.py which is located in "home/Marketing Report/Scripts/"
 python "home/Marketing Report/Scripts/ZMR.py"
 # run UpdateWebtrekk.sql which is located in "home/Marketing Report/Scripts/" on a PostgreSQL DB (host=10.11.12.13 port=5439 database=zalora username=helloDB password=world
-
+export PGPASSWORD=world
+psql -h 10.11.12.13 -d zalora -p 5439 -U helloDB -f "home/Marketing Report/Scripts/UpdateWebtrekk.sql"
 END_SCRIPT
 exit 0
 ```
 How would you schedule the above as a cron job every day at 2.35am?
+```shell
+35 14 * * * /pathToScript/myScript.sh
+```
 
 b) Have a look at the folder "/programming-tasks/bash/"
 - Write a bash script to rename all files below from "zalora-\*" to "Zalora-\*"
