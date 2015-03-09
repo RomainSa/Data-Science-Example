@@ -107,6 +107,7 @@ for file in zalora-* ; do mv "$file" Z"${file#z}" ; done
 ##!/bin/bash
 
 ```
+
     Write a shell script to remove all dot character (.) within those files.
 ```shell
 ##!/bin/bash
