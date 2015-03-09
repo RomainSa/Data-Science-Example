@@ -115,12 +115,12 @@ do
 done
 ```
 
-Write a shell script to remove all dot character (.) within those files.
+- Write a shell script to remove all dot character (.) within those files.
 ```shell
 ##!/bin/bash
 for file in Zalora-*
 do
-	uppercasetext="$(tr -d "." < $file)"
-	echo $uppercasetext > $file
+	nodottext="$(tr -d "." < $file)"
+	echo $nodottext > $file
 done
 ```
