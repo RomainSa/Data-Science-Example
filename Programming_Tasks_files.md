@@ -33,7 +33,8 @@ brands.most_common(len(brands))
 ###### 2. SQL<br>
 a) What is the relation between Database, Schema, Tables, View in PostgreSQL / MySQL?<br>
 ```
-A Database is a set of Tables and Views. Its organization (relations between tables) is based on a Schema.
+A Database is a set of Tables and Views. 
+Its organization (relations between tables) is based on a Schema.
 ```
 <br>
 b) What is the difference between a table and a view?<br>
