@@ -99,7 +99,10 @@ b) Have a look at the folder "/programming-tasks/bash/"
 - Write a bash script to rename all files below from "zalora-\*" to "Zalora-\*"
 ```shell
 ##!/bin/bash
-for file in zalora-* ; do mv "$file" Z"${file#z}" ; done
+for file in zalora-*
+do 
+	mv "$file" Z"${file#z}"
+done
 ```
 - All Zalora-* files contain a single string: "this is a test." (with a new line at the end):
     Write a shell script to change the content of those files to all uppercase.
