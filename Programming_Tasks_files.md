@@ -1,5 +1,5 @@
 =============================================================================
-###### 1. Python / Haskell / Perl / Your prefered scripting language.<br>
+#### 1. Python / Haskell / Perl / Your prefered scripting language.<br>
 a) array = [['a','b','c'],['d','e','f']]<br>
 How do I get this output?<br>
 a<br>
@@ -30,7 +30,7 @@ brands.most_common(len(brands))
 ```
 
 =============================================================================
-###### 2. SQL<br>
+#### 2. SQL<br>
 a) What is the relation between Database, Schema, Tables, View in PostgreSQL / MySQL?<br>
 ```
 A Database is a set of Tables and Views. 
@@ -65,7 +65,7 @@ TO buying;
 ```
 
 =============================================================================
-###### 3. Bash scripting<br>
+#### 3. Bash scripting<br>
 a) Write a bash script for the below set of tasks:<br>
 - connect to ftp server (host=10.11.12.13 port=22 username=helloFTP password=world)
 - download all files that have their name started with "webtrekk_marketing" into "home/Marketing Report/Data/"
