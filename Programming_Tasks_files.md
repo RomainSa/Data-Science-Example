@@ -96,7 +96,7 @@ exit 0
 How would you schedule the above as a cron job every day at 2.35am?
 
 b) Have a look at the folder "/programming-tasks/bash/"
-- Write a bash script to rename all files below from "zalora-*" to "Zalora-*"
+- Write a bash script to rename all files below from "zalora-\*" to "Zalora-\*"
 ```shell
 ##!/bin/bash
 for file in zalora-* ; do mv "$file" Z"${file#z}" ; done
@@ -105,7 +105,11 @@ for file in zalora-* ; do mv "$file" Z"${file#z}" ; done
     Write a shell script to change the content of those files to all uppercase.
 ```shell
 ##!/bin/bash
-
+for file in Zalora-*
+do
+	uppercasetext="$(awk '{print toupper($0)}' < $file)"
+	echo $uppercasetext > $file
+done
 ```
 
     Write a shell script to remove all dot character (.) within those files.
