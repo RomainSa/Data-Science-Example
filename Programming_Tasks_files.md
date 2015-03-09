@@ -1,13 +1,13 @@
 =============================================================================
 1. Python / Haskell / Perl / Your prefered scripting language.
-a) array = [['a','b','c'],['d','e','f']]
-How do I get this output?
-a
-b
-c
-d
-e
-f
+a) array = [['a','b','c'],['d','e','f']]<br>
+How do I get this output?<br>
+a<br>
+b<br>
+c<br>
+d<br>
+e<br>
+f<br>
 
 b) Have a look at "programming-tasks/top10_sample.csv"
 Each line in this file represents a list of Brand in our store.
