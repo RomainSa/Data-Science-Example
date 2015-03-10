@@ -8,7 +8,6 @@ c<br>
 d<br>
 e<br>
 f<br>
-<br>
 ```python
 print(*[j for i in array for j in i], sep = '\n')
 ```
@@ -18,14 +17,14 @@ Each line in this file represents a list of Brand in our store.<br>
 Write a script to print out a list of brand names and their occurrence counts (sorted).<br>
 ```python
 import csv
-dataPath = '/home/roms/Desktop/Zalora/'
+dataPath = '/pathToMyData/'
 from collections import Counter
 brands = Counter()
 with open(dataPath + 'programming-tasks/top10_sample.csv', 'r') as datafile:
-    datareader = csv.reader(datafile)
-    for row in datareader:
-    	 for brand in row[0][1:-1].split(','):
-          brands[brand] += 1
+	datareader = csv.reader(datafile)
+	for row in datareader:
+		for brand in row[0][1:-1].split(','):
+			brands[brand] += 1
 brands.most_common(len(brands))
 ```
 
@@ -79,18 +78,21 @@ HOST='10.11.12.13'
 LOGIN='helloFTP'
 PASSWORD='world'
 PORT=22
-
 ftp $HOST $PORT << END_SCRIPT
 quote USER $LOGIN
 quote PASS $PASSWORD
+
 # download all files that have their name started with "webtrekk_marketing" into "home/Marketing Report/Data/"
 mget webtrekk_marketing* "home/Marketing Report/Data/"
 quit
+
 # run ZMR.py which is located in "home/Marketing Report/Scripts/"
 python "home/Marketing Report/Scripts/ZMR.py"
+
 # run UpdateWebtrekk.sql which is located in "home/Marketing Report/Scripts/" on a PostgreSQL DB (host=10.11.12.13 port=5439 database=zalora username=helloDB password=world
 export PGPASSWORD=world
 psql -h 10.11.12.13 -d zalora -p 5439 -U helloDB -f "home/Marketing Report/Scripts/UpdateWebtrekk.sql"
+
 END_SCRIPT
 exit 0
 ```
