@@ -101,7 +101,7 @@ returned/cancelled colors (the average being the red line):
     plt.title('10 highests rates of rejection+cancellation per color')
 ```
 
-![png](data_science_example_files/data_science_example_21_1.png)
+![png](Data_Science_files/data_science_example_files/data_science_example_21_1.png)
 
 
 Another way to improve the dataset is to use external data. In particular,
@@ -145,7 +145,7 @@ The distribution of the score is the following:
     plt.title('Histogram of the score')
 ```
 
-![png](data_science_example_files/data_science_example_30_1.png)
+![png](Data_Science_files/data_science_example_files/data_science_example_30_1.png)
 
 
 The distribution seems pretty close to a normal one.
