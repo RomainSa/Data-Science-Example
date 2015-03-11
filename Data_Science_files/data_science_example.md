@@ -32,7 +32,7 @@ information]
 First, let's import some packages, load the dataset and perform some treatments
 on the date:
 
-
+```python
     from math import log
     from pandas import DataFrame
     from datetime import datetime
@@ -51,7 +51,7 @@ on the date:
     quantitative = data.select_dtypes(include=['int64', 'float64']).columns
     qualitative = data.select_dtypes(exclude=['int64', 'float64','datetime']).columns
     other_date = data.select_dtypes(include=['datetime']).columns
-
+```
 We have a dataset with:
 * 4000 observations
 * 25 columns, of which:
@@ -65,48 +65,41 @@ One thing we can do in order to improve the dataset is to calculate some
 indicators, such as:
 * the day of the year (1 being 1st of january) rather than a timestamp
 
-
+```python
     data['day'] = data['activated_at'].apply(lambda x : x.timetuple().tm_yday)
-
+```
 * the number of views per impression for each item (%viewed)
 
-
+```python
     data['%viewed'] = data['views_count']/data['impressions_count']
-
+```
 * the net number of items bought per view for each item (%bought)
 
-
+```python
     data['%bought'] = (data['net_sale_count']/data['views_count'])
-
+```
 * the discount rate for each item (%discount)
 
-
+```python
     data['special_price'] = data[['special_price','original_price']].min(axis=1)
     data['%discount'] = (1-data['special_price']/data['original_price'])
-
+```
 * the rate of return and cancellation for each sale (%cancel_reject)
 
-
+```python
     data['%cancel_reject'] = 1-data['net_sale_count']/(data['net_sale_count']+data['rejected_returned_sale_count']+data['canceled_sale_count'])
-
+```
 We can then visualize some interesting facts. For example here are the 10 most
 returned/cancelled colors (the average being the red line):
 
-
+```python
     rejection_per_color = 1-(data[['colors', 'net_sale_count']].groupby('colors').sum().sum(axis=1)/data[['colors', 'net_sale_count', 'rejected_returned_sale_count', 'canceled_sale_count']].groupby('colors').sum().sum(axis=1))
     r = rejection_per_color.order(ascending=False).head(10)
     plt.barh(np.arange(len(r)), r.values, align='center', alpha=0.4)
     plt.yticks(np.arange(len(r)), r.index)
     plt.axvline(x=0.6, color='r')
     plt.title('10 highests rates of rejection+cancellation per color')
-
-
-
-
-    <matplotlib.text.Text at 0x7f4a917ea240>
-
-
-
+```
 
 ![png](data_science_example_files/data_science_example_21_1.png)
 
@@ -130,7 +123,7 @@ dispersion in the data.
 We then calculate the score, along with the score on the last 7 and 30 days,
 plus the std deviation of those 3 scores:
 
-
+```python
     data['score'] = (data[['special_price','original_price']].min(axis=1)*data['net_sale_count']/data['impressions_count']).apply(log)
     
     data['score_30'] = (data['special_price']*data['net_sale_count_last_30days']/data['impressions_count_last_30days'])
@@ -144,20 +137,13 @@ plus the std deviation of those 3 scores:
     data['score_7'] = data['score_7'].apply(log)
     
     data['score_std'] = data[['score','score_7','score_30']].std(axis=1);
-
+```
 The distribution of the score is the following:
 
-
+```python
     plt.hist(data['score'].values, bins = 10)
     plt.title('Histogram of the score')
-
-
-
-
-    <matplotlib.text.Text at 0x7f4a916eaa20>
-
-
-
+```
 
 ![png](data_science_example_files/data_science_example_30_1.png)
 
@@ -168,54 +154,54 @@ Now let's try to model the score.
 First we need to turn our categorical variables ('brand'...) into column of 0/1
 values:
 
-
+```python
     labels=[]
     for col in qualitative:
         l = data[col].value_counts().order(ascending = False).index.tolist()[:-1]
         for label in l:
             data[label] = (data[col] == label)*1
             labels.append(label)
-
+```
 Now let's pick our features.
 We will use all the previously created one, and quantitative data such as the
 price, %discount...
 
-
+```python
     features = labels + ['original_price', 'special_price', '%discount', 'day', 'score_7', 'score_30', 'score_std']
     X = data[features]
     mu, sigma = X.mean(), X.std()
     X = (X-mu)/sigma # normalization of the data
     y = data['score']
-
+```
 ### 3) How would you test, train, and evaluate your model?
 
 We split our dataset into a training set (80% of the data) and a test set (20%).
 
-
+```python
     test = sample(set(data.index), int(0.20*len(y)))
     training = list(set(data.index)-set(test))
-
+```
 Now let's use those features and train a regression model using random forests:
 
-
+```python
     clf = RandomForestRegressor()
     clf = clf.fit(X.loc[training], y.loc[training])
-
+```
 Let's try to predict the scores on the test set:
 
-
+```python
     data['predictionsRF'] = clf.predict(X);
-
+```
 Now, let's compare the ranking we got on the test set ('rank_model') set with
 the actual one ('rank_real'):
 
-
+```python
     data['rank_real'] = data['score']
     data['rank_model'] = data['predictionsRF']
     data['rank_real'].loc[test] = data['score'].loc[test].rank(ascending = False)
     data['rank_model'].loc[test] = data['predictionsRF'].loc[test].rank(ascending = False)
     data[['rank_model','predictionsRF', 'rank_real','score']].loc[test][data['rank_model'].loc[test]<=10].sort('rank_model')
-
+```
 
 
 
@@ -320,12 +306,12 @@ Now let's imagine that we would like to recommend 10 items to a Female customer
 looking for a black dress
 during summer. The recommendations would ve the following:
 
-
+```python
     user = X[(X['black'] > 0 ) & (X['Female'] > 0) & (X['Dresses'] > 0) & (X['Spring / Summer'] > 0)]
     recommendations = DataFrame(clf.predict(user), index = user.index)[0]
     recommendations = recommendations.order(ascending = False).head(10).index
     data[qualitative.tolist() + ['score', 'predictionsRF']].loc[recommendations]
-
+```
 
 
 
