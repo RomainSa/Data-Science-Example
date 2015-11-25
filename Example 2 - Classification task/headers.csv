@@ -1,0 +1,43 @@
+Description	code	Type
+age	AAGE	continuous
+class of worker	ACLSWKR	nominal
+industry code	ADTIND	nominal
+occupation code	ADTOCC	nominal
+education	AHGA	nominal
+wage per hour	AHRSPAY	continuous
+enrolled in edu inst last wk	AHSCOL	nominal
+marital status	AMARITL	nominal
+major industry code	AMJIND	nominal
+major occupation code	AMJOCC	nominal
+race	ARACE	nominal
+hispanic Origin	AREORGN	nominal
+sex	ASEX	nominal
+member of a labor union	AUNMEM	nominal
+reason for unemployment	AUNTYPE	nominal
+full or part time employment stat	AWKSTAT	nominal
+capital gains	CAPGAIN	continuous
+capital losses	CAPLOSS	continuous
+divdends from stocks	DIVVAL	continuous
+tax filer status	FILESTAT	nominal
+region of previous residence	GRINREG	nominal
+state of previous residence	GRINST	nominal
+detailed household and family stat	HHDFMX	nominal
+detailed household summary in household	HHDREL	nominal
+instance weight	MARSUPWT	continuous
+migration code-change in msa	MIGMTR1	nominal
+migration code-change in reg	MIGMTR3	nominal
+migration code-move within reg	MIGMTR4	nominal
+live in this house 1 year ago	MIGSAME	nominal
+migration prev res in sunbelt	MIGSUN	nominal
+num persons worked for employer	NOEMP	continuous
+family members under 18	PARENT	nominal
+country of birth father	PEFNTVTY	nominal
+country of birth mother	PEMNTVTY	nominal
+country of birth self	PENATVTY	nominal
+citizenship	PRCITSHP	nominal
+own business or self employed	SEOTR	nominal
+fill inc questionnaire for veteran's admin	VETQVA	nominal
+veterans benefits	VETYN	nominal
+weeks worked in year	WKSWORK	continuous
+year	YEAR	continuous
+Income	INCOME	nominal
